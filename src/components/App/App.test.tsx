@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 import App from "./App";
 import mainTheme from "../../styles/mainTheme";
+import { BrowserRouter } from "react-router-dom";
 
 describe("Given an App component", () => {
   describe("When its rendered", () => {
@@ -9,9 +10,11 @@ describe("Given an App component", () => {
       const expectedImageText = "hoteling logo";
 
       render(
-        <ThemeProvider theme={mainTheme}>
-          <App />
-        </ThemeProvider>,
+        <BrowserRouter>
+          <ThemeProvider theme={mainTheme}>
+            <App />
+          </ThemeProvider>
+        </BrowserRouter>,
       );
 
       const logo = screen.getByRole("img", {

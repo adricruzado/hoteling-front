@@ -1,21 +1,13 @@
-import { render, screen } from "@testing-library/react";
-import { ThemeProvider } from "styled-components";
+import { screen } from "@testing-library/react";
 import App from "./App";
-import mainTheme from "../../styles/mainTheme";
-import { BrowserRouter } from "react-router-dom";
+import customRender from "../../testUtils/customRender";
 
 describe("Given an App component", () => {
   describe("When its rendered", () => {
     test("Then it should show an hoteling logo in a header", () => {
       const expectedImageText = "hoteling logo";
 
-      render(
-        <BrowserRouter>
-          <ThemeProvider theme={mainTheme}>
-            <App />
-          </ThemeProvider>
-        </BrowserRouter>,
-      );
+      customRender(<App />);
 
       const logo = screen.getByRole("img", {
         name: expectedImageText,

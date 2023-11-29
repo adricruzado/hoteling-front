@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const AppStyled = styled.div`
+const HeaderStyled = styled.header`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,4 +8,4 @@ const AppStyled = styled.div`
   width: 100%;
 `;
 
-export default AppStyled;
+export default HeaderStyled;

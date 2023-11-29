@@ -1,7 +1,10 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import { hotelsReducer } from "./features/hotels/hotelsSlice";
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    hotelsState: hotelsReducer,
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;

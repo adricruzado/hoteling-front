@@ -10,36 +10,34 @@ const HotelCard = ({
 }: HotelCardProps): React.ReactElement => {
   return (
     <HotelCardStyled className="hotel-card">
-      <div className="hotel-card__info">
-        <img
-          className="hotel-card__image"
-          src={picture}
-          alt={name}
-          width="300"
-          height="169"
-        />
-        <h2 className="hotel-card__name">{name}</h2>
-        <dl className="hotel-card__details">
-          <dt className="hotel-card__detail">Country:</dt>
-          <dd>{country}</dd>
-        </dl>
-        <dl className="hotel-card__details">
-          <dt className="hotel-card__detail">City:</dt>
-          <dd>{city}</dd>
-        </dl>
-        <dl className="hotel-card__details">
-          <dt className="hotel-card__detail">Rating:</dt>
-          <dd>{rating}/10</dd>
-        </dl>
-        <dl className="hotel-card__details">
-          <dt className="hotel-card__detail">Price:</dt>
-          <dd>{price}€/night</dd>
-        </dl>
-        <dl className="hotel-card__details">
-          <dt className="hotel-card__detail">Favourite:</dt>
-          <dd>{isFavourite ? "✅" : "❌"}</dd>
-        </dl>
-      </div>
+      <img
+        className="hotel-card__image"
+        src={picture}
+        alt={name}
+        width="300"
+        height="169"
+      />
+      <h2 className="hotel-card__name">{name}</h2>
+      <dl className="hotel-card__details">
+        <dt className="hotel-card__detail">Country:</dt>
+        <dd>{country}</dd>
+      </dl>
+      <dl className="hotel-card__details">
+        <dt className="hotel-card__detail">City:</dt>
+        <dd>{city}</dd>
+      </dl>
+      <dl className="hotel-card__details">
+        <dt className="hotel-card__detail">Rating:</dt>
+        <dd>{rating}/10</dd>
+      </dl>
+      <dl className="hotel-card__details">
+        <dt className="hotel-card__detail">Price:</dt>
+        <dd>{price}€/night</dd>
+      </dl>
+      <dl className="hotel-card__details">
+        <dt className="hotel-card__detail">Favourite:</dt>
+        <dd>{isFavourite ? "✅" : "❌"}</dd>
+      </dl>
     </HotelCardStyled>
   );
 };

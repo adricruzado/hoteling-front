@@ -20,12 +20,12 @@ describe("Given an HotelCard component", () => {
 
   describe("When it receives 'Four Seasons Hotel George V' data", () => {
     test("Then it should show the text 'Four Seasons Hotel George V' in a heading", () => {
-      const fourSeasonsHotelData = hotelData;
+      const fourSeasonsHotelData = hotelData.name;
 
       customRender(<HotelCard hotel={hotelData} />);
 
       const fourSeasonsName = screen.getByRole("heading", {
-        name: fourSeasonsHotelData.name,
+        name: fourSeasonsHotelData,
       });
 
       expect(fourSeasonsName).toBeInTheDocument();

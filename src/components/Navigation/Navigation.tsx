@@ -6,7 +6,7 @@ const Navigation = (): React.ReactElement => {
     <NavigationStyled>
       <ul className="navigation">
         <li>
-          <NavLink to="/hotels/">Home</NavLink>
+          <NavLink to="/hotels">Home</NavLink>
         </li>
         <li>
           <NavLink to="/new">Add hotel</NavLink>

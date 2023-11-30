@@ -41,6 +41,11 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
   }
 
+  dl, dd, dt {
+    margin: 0;
+    padding: 0;
+  }
+
   input, textarea {
     border: none;
     font: inherit;

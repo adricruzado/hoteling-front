@@ -2,15 +2,19 @@ import { useEffect } from "react";
 import { useAppDispatch } from "../../store/hooks";
 import HotelsPageStyled from "./HotelsPageStyled";
 import { loadHotelsActionCreator } from "../../store/features/hotels/hotelsSlice";
-import { hotelsData } from "../../data/hotel/hotelsData";
 import HotelList from "../../components/HotelList/HotelList";
+import useHotelsApi from "../../hooks/useHotelsApi";
 
 const HotelsPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
+  const { getHotels } = useHotelsApi();
 
   useEffect(() => {
-    dispatch(loadHotelsActionCreator(hotelsData));
-  }, [dispatch]);
+    (async () => {
+      const hotels = await getHotels();
+      dispatch(loadHotelsActionCreator(hotels.hotels));
+    })();
+  }, [dispatch, getHotels]);
 
   return (
     <HotelsPageStyled>

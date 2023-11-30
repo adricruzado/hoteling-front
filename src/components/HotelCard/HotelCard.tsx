@@ -1,4 +1,5 @@
 import { HotelStructure } from "../../store/features/hotels/types";
+import Button from "../Button/Button";
 import HotelCardStyled from "./HotelCardStyled";
 
 interface HotelCardProps {
@@ -38,6 +39,8 @@ const HotelCard = ({
         <dt className="hotel-card__detail">Favourite:</dt>
         <dd>{isFavourite ? "✅" : "❌"}</dd>
       </dl>
+      <Button text="modify" />
+      <Button text="delete" />
     </HotelCardStyled>
   );
 };

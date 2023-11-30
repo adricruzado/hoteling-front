@@ -30,5 +30,15 @@ describe("Given an HotelCard component", () => {
 
       expect(fourSeasonsName).toBeInTheDocument();
     });
+
+    test("Then it should show the emoji '✅'", () => {
+      const expectedEmoji = "✅";
+
+      customRender(<HotelCard hotel={hotelData} />);
+
+      const favouriteEmoji = screen.getByText(expectedEmoji);
+
+      expect(favouriteEmoji).toBeInTheDocument();
+    });
   });
 });

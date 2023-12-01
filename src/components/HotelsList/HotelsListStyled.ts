@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
-const AppStyled = styled.div`
+const HotelsListStyled = styled.ul`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  width: 100%;
+  gap: 25px;
 `;
 
-export default AppStyled;
+export default HotelsListStyled;

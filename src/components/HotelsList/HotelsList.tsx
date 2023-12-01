@@ -1,19 +1,19 @@
 import { useAppSelector } from "../../store/hooks";
 import HotelCard from "../HotelCard/HotelCard";
-import HotelListStyled from "./HotelListStyled";
+import HotelsListStyled from "./HotelsListStyled";
 
-const HotelList = (): React.ReactElement => {
+const HotelsList = (): React.ReactElement => {
   const hotels = useAppSelector((state) => state.hotelsState.hotels);
 
   return (
-    <HotelListStyled>
+    <HotelsListStyled>
       {hotels.map((hotel) => (
         <li key={hotel._id}>
           <HotelCard hotel={hotel} />
         </li>
       ))}
-    </HotelListStyled>
+    </HotelsListStyled>
   );
 };
 
-export default HotelList;
+export default HotelsList;

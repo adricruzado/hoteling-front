@@ -1,14 +1,14 @@
 import { screen } from "@testing-library/react";
-import { hotelData } from "../../data/hotel/hotelData";
 import customRender from "../../testUtils/customRender";
 import HotelCard from "./HotelCard";
+import { apiHotelMock } from "../../mocks/apiHotelMock";
 
 describe("Given an HotelCard component", () => {
   describe("When it receives a 'Four Seasons Hotel George V' picture url", () => {
     test("Then it should show a 'Four Seasons Hotel George V' picture", () => {
-      const expectedAltText = hotelData.name;
+      const expectedAltText = apiHotelMock.name;
 
-      customRender(<HotelCard hotel={hotelData} />);
+      customRender(<HotelCard hotel={apiHotelMock} />);
 
       const pictureAltText = screen.getByRole("img", {
         name: expectedAltText,
@@ -20,9 +20,9 @@ describe("Given an HotelCard component", () => {
 
   describe("When it receives 'Four Seasons Hotel George V' data", () => {
     test("Then it should show the text 'Four Seasons Hotel George V' in a heading", () => {
-      const fourSeasonsHotelData = hotelData.name;
+      const fourSeasonsHotelData = apiHotelMock.name;
 
-      customRender(<HotelCard hotel={hotelData} />);
+      customRender(<HotelCard hotel={apiHotelMock} />);
 
       const fourSeasonsName = screen.getByRole("heading", {
         name: fourSeasonsHotelData,
@@ -34,7 +34,7 @@ describe("Given an HotelCard component", () => {
     test("Then it should show the emoji '✅'", () => {
       const expectedEmoji = "✅";
 
-      customRender(<HotelCard hotel={hotelData} />);
+      customRender(<HotelCard hotel={apiHotelMock} />);
 
       const favouriteEmoji = screen.getByText(expectedEmoji);
 

@@ -1,6 +1,6 @@
-import { HotelStructure } from "../../store/features/hotels/types";
+import { HotelStructure } from "../store/features/hotels/types";
 
-export const hotelData: HotelStructure = {
+export const apiHotelMock: HotelStructure = {
   _id: "656492010f2c29b15944b0d8",
   name: "Four Seasons Hotel George V",
   country: "France",

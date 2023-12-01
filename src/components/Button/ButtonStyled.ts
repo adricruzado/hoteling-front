@@ -5,10 +5,11 @@ const ButtonStyled = styled.button`
   color: #fff;
   text-transform: uppercase;
   border-radius: 15px;
-  padding: 10px;
+  padding: 18px;
+  font-size: 22px;
   font-weight: bold;
-  margin-top: 10px;
-  margin-bottom: 5px;
+  margin-top: 22px;
+  margin-bottom: px;
 `;
 
 export default ButtonStyled;

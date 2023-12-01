@@ -12,10 +12,10 @@ const HeaderStyled = styled.header`
     justify-content: center;
     width: 100%;
     background-color: ${({ theme }) => theme.colors.accent};
-  }
 
-  .header__logo {
-    width: 400px;
+    &__logo {
+      width: 320px;
+    }
   }
 `;
 

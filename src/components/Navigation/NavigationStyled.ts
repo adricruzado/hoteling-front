@@ -4,7 +4,7 @@ const NavigationStyled = styled.nav`
   .navigation {
     display: flex;
     justify-content: center;
-    gap: 60px;
+    gap: 40px;
     font-family: ${({ theme }) => theme.typography.secondaryFont};
     font-size: 25px;
     font-weight: 500;
@@ -15,7 +15,7 @@ const NavigationStyled = styled.nav`
     margin-bottom: 15px;
     padding: 20px;
     border-radius: 40px;
-    width: 370px;
+    width: 290px;
   }
 
   .active {

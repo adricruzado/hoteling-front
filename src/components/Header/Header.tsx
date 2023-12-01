@@ -6,7 +6,7 @@ const Header = (): React.ReactElement => {
     <HeaderStyled>
       <div className="header-container">
         <img
-          className="header__logo"
+          className="header-container__logo"
           src="/images/logo.webp"
           alt="hoteling logo"
           width="400"

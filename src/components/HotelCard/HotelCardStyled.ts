@@ -35,7 +35,7 @@ const HotelCardStyled = styled.article`
     }
 
     &__image {
-      object-fit: fill;
+      object-fit: cover;
       border: 4px solid ${({ theme }) => theme.colors.main};
       border-radius: 25px;
     }

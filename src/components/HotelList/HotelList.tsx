@@ -3,11 +3,11 @@ import HotelCard from "../HotelCard/HotelCard";
 import HotelListStyled from "./HotelListStyled";
 
 const HotelList = (): React.ReactElement => {
-  const hotelsState = useAppSelector((state) => state.hotelsState);
+  const hotels = useAppSelector((state) => state.hotelsState.hotels);
 
   return (
     <HotelListStyled>
-      {hotelsState.hotels.map((hotel) => (
+      {hotels.map((hotel) => (
         <li key={hotel._id}>
           <HotelCard hotel={hotel} />
         </li>

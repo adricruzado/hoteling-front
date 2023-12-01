@@ -7,12 +7,10 @@ const App = (): React.ReactElement => {
   return (
     <AppStyled>
       <Header />
-      <main>
-        <Routes>
-          <Route path="/" element={<Navigate to="/hotels/" />} />
-          <Route path="/hotels" element={<HotelsPage />} />
-        </Routes>
-      </main>
+      <Routes>
+        <Route path="/" element={<Navigate to="/hotels" />} />
+        <Route path="/hotels" element={<HotelsPage />} />
+      </Routes>
     </AppStyled>
   );
 };

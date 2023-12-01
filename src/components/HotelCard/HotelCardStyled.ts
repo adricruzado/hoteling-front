@@ -8,7 +8,7 @@ const HotelCardStyled = styled.article`
   font-family: ${({ theme }) => theme.typography.mainFont};
   color: #fff;
   border-radius: 30px;
-  width: 340px;
+  width: 290px;
   height: 100%;
   box-shadow: 0 0 15px ${({ theme }) => theme.colors.accent};
   padding: 20px;

@@ -1,12 +1,12 @@
-import { PropsWithChildren } from "react";
 import ButtonStyled from "./ButtonStyled";
 
-interface ButtonProps extends PropsWithChildren {
+interface ButtonProps {
   text: string;
+  actionOnClick?: () => void;
 }
 
-const Button = ({ text }: ButtonProps): React.ReactElement => {
-  return <ButtonStyled>{text}</ButtonStyled>;
+const Button = ({ text, actionOnClick }: ButtonProps): React.ReactElement => {
+  return <ButtonStyled onClick={actionOnClick}>{text}</ButtonStyled>;
 };
 
 export default Button;

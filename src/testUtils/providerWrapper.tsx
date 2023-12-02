@@ -4,6 +4,7 @@ import { uiReducer } from "../store/features/ui/uiSlice";
 import { apiHotelsMock } from "../mocks/apiHotelsMock";
 import { Provider } from "react-redux";
 import { PropsWithChildren } from "react";
+import { store } from "../store";
 
 export const getMockStore = () => {
   const mockStore = configureStore({
@@ -18,7 +19,5 @@ export const getMockStore = () => {
 };
 
 export const providerWrapper = ({ children }: PropsWithChildren) => {
-  const mockStore = getMockStore();
-
-  return <Provider store={mockStore}>{children}</Provider>;
+  return <Provider store={store}>{children}</Provider>;
 };

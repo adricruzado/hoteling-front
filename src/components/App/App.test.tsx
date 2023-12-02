@@ -1,10 +1,10 @@
 import { screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import App from "./App";
 import {
   customRender,
   customRenderWithoutBrowserRouter as customRenderWithoutBrowserRouter,
 } from "../../testUtils/customRender";
-import { MemoryRouter } from "react-router-dom";
 
 describe("Given an App component", () => {
   describe("When its rendered", () => {
@@ -66,6 +66,22 @@ describe("Given an App component", () => {
       });
 
       expect(heading).toBeInTheDocument();
+    });
+  });
+
+  describe("When it is rendered with an invalid path", () => {
+    test("Then it should show the text 'Not found...'", () => {
+      const expectedText = "Not found...";
+
+      customRenderWithoutBrowserRouter(
+        <MemoryRouter initialEntries={["/wrong"]}>
+          <App />
+        </MemoryRouter>,
+      );
+
+      const notFoundPage = screen.getByText(expectedText);
+
+      expect(notFoundPage).toBeInTheDocument();
     });
   });
 });

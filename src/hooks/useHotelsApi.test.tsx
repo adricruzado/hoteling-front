@@ -1,6 +1,7 @@
 import { renderHook } from "@testing-library/react";
 import { apiHotelsMock } from "../mocks/apiHotelsMock";
 import useHotelsApi from "./useHotelsApi";
+import { providerWrapper } from "../testUtils/providerWrapper";
 
 describe("Given a useHotelsApi hook", () => {
   describe("When it is called", () => {
@@ -11,7 +12,7 @@ describe("Given a useHotelsApi hook", () => {
         result: {
           current: { getHotels },
         },
-      } = renderHook(() => useHotelsApi());
+      } = renderHook(() => useHotelsApi(), { wrapper: providerWrapper });
 
       const hotels = await getHotels();
 

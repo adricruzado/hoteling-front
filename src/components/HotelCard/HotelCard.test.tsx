@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import customRender from "../../testUtils/customRender";
+import { customRender } from "../../testUtils/customRender";
 import HotelCard from "./HotelCard";
 import { apiHotelMock } from "../../mocks/apiHotelMock";
 

@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import HotelsPage from "./HotelsPage";
-import customRender from "../../testUtils/customRender";
+import { customRender } from "../../testUtils/customRender";
 
 describe("Given a HotelsPage page", () => {
   describe("When it is rendered", () => {

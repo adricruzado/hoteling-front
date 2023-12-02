@@ -3,6 +3,7 @@ import { UiStructure } from "./types";
 
 export const initialUiState: UiStructure = {
   isLoading: false,
+  isError: false,
 };
 
 const uiSlice = createSlice({
@@ -17,6 +18,14 @@ const uiSlice = createSlice({
       ...currentState,
       isLoading: false,
     }),
+    showError: (currentState) => ({
+      ...currentState,
+      isError: true,
+    }),
+    hideError: (currentState) => ({
+      ...currentState,
+      isError: false,
+    }),
   },
 });
 
@@ -24,4 +33,6 @@ export const uiReducer = uiSlice.reducer;
 export const {
   showLoading: showLoadingActionCreator,
   hideLoading: hideLoadingActionCreator,
+  showError: showErrorActionCreator,
+  hideError: hideErrorActionCreator,
 } = uiSlice.actions;

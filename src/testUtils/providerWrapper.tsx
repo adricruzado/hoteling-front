@@ -5,7 +5,7 @@ import { apiHotelsMock } from "../mocks/apiHotelsMock";
 import { Provider } from "react-redux";
 import { PropsWithChildren } from "react";
 
-const getMockStore = () => {
+export const getMockStore = () => {
   const mockStore = configureStore({
     reducer: { hotelsState: hotelsReducer, uiState: uiReducer },
     preloadedState: {

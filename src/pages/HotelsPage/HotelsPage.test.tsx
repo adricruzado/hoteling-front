@@ -15,5 +15,27 @@ describe("Given a HotelsPage page", () => {
 
       expect(hotelsPageHeading).toBeInTheDocument();
     });
+
+    test("Then it should show the text 'Four Seasons Hotel George V' in a heading", () => {
+      const expectedHotel = "Four Seasons Hotel George V";
+
+      customRender(<HotelsPage />);
+
+      const hotel = screen.getByRole("heading", {
+        name: expectedHotel,
+      });
+
+      expect(hotel).toBeInTheDocument();
+    });
+
+    test("Then it should show an image with the alternative text 'Four Seasons Hotel George V'", () => {
+      const expectedAltText = "Four Seasons Hotel George V";
+
+      customRender(<HotelsPage />);
+
+      const hotelImage = screen.getByAltText(expectedAltText);
+
+      expect(hotelImage).toBeInTheDocument();
+    });
   });
 });

@@ -13,8 +13,17 @@ const hotelsSlice = createSlice({
       ...currentState,
       hotels: action.payload,
     }),
+    deleteHotel: (currentState, action: PayloadAction<string>) => ({
+      ...currentState,
+      hotels: currentState.hotels.filter(
+        (hotel) => hotel._id !== action.payload,
+      ),
+    }),
   },
 });
 
 export const hotelsReducer = hotelsSlice.reducer;
-export const { loadHotels: loadHotelsActionCreator } = hotelsSlice.actions;
+export const {
+  loadHotels: loadHotelsActionCreator,
+  deleteHotel: deleteHotelActionCreator,
+} = hotelsSlice.actions;

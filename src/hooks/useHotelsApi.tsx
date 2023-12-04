@@ -24,7 +24,20 @@ const useHotelsApi = () => {
     return hotels;
   }, [dispatch]);
 
-  return { getHotels };
+  const deleteHotel = useCallback(
+    async (hotelId: string) => {
+      dispatch(showLoadingActionCreator());
+
+      const { data } = await axios.delete(`/hotels/${hotelId}`);
+
+      dispatch(hideLoadingActionCreator());
+
+      return data;
+    },
+    [dispatch],
+  );
+
+  return { getHotels, deleteHotel };
 };
 
 export default useHotelsApi;

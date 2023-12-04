@@ -19,4 +19,21 @@ describe("Given a useHotelsApi hook", () => {
       expect(hotels).toStrictEqual(expectedHotels);
     });
   });
+
+  describe("When it calls his deleteHotel method with an hotel id", () => {
+    test("Then it should delete the 'Four Seasons Hotel George V' hotel", async () => {
+      const expectedHotelId = apiHotelsMock[0]._id;
+      const expectedResponse = {};
+
+      const {
+        result: {
+          current: { deleteHotel },
+        },
+      } = renderHook(() => useHotelsApi(), { wrapper: providerWrapper });
+
+      const response = await deleteHotel(expectedHotelId);
+
+      expect(response).toStrictEqual(expectedResponse);
+    });
+  });
 });

@@ -3,6 +3,8 @@ import { customRender } from "../../testUtils/customRender";
 import HotelCard from "./HotelCard";
 import { apiHotelMock } from "../../mocks/apiHotelMock";
 import userEvent from "@testing-library/user-event";
+import { server } from "../../mocks/node";
+import { errorHandlers } from "../../mocks/errorHandlers";
 
 describe("Given an HotelCard component", () => {
   describe("When it receives a 'Four Seasons Hotel George V' hotel", () => {
@@ -60,8 +62,8 @@ describe("Given an HotelCard component", () => {
   });
 
   describe("When it receives a click on the delete button of 'Four Seasons Hotel George V' hotel", () => {
+    const expectedButtonText = "delete";
     test("Then it should not show the 'Four Seasons Hotel George V' hotel", async () => {
-      const expectedButtonText = "delete";
       const expectedHotelName = "Four Seasons Hotel George V";
 
       customRender(<HotelCard hotel={apiHotelMock} />);
@@ -73,6 +75,36 @@ describe("Given an HotelCard component", () => {
 
       waitFor(() => {
         expect(heading).not.toBeInTheDocument();
+      });
+    });
+
+    test("Then it should show a text 'Great! The hotel has been deleted.' as a feedback message", async () => {
+      const expectedFeedbackMessage = "Great! The hotel has been deleted.";
+
+      customRender(<HotelCard hotel={apiHotelMock} />);
+
+      const button = screen.getByRole("button", { name: expectedButtonText });
+
+      await userEvent.click(button);
+
+      await waitFor(() => {
+        expect(screen.getByText(expectedFeedbackMessage)).toBeInTheDocument();
+      });
+    });
+
+    test("Then it should show a text 'Sorry! We couldn't delete the hotel.' as a feedback message", async () => {
+      server.use(...errorHandlers);
+
+      const expectedFeedbackMessage = "Sorry! We couldn't delete the hotel.";
+
+      customRender(<HotelCard hotel={apiHotelMock} />);
+
+      const button = screen.getByRole("button", { name: expectedButtonText });
+
+      await userEvent.click(button);
+
+      await waitFor(() => {
+        expect(screen.getByText(expectedFeedbackMessage)).toBeInTheDocument();
       });
     });
   });

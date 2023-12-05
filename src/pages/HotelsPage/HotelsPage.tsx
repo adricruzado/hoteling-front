@@ -18,10 +18,8 @@ const HotelsPage = (): React.ReactElement => {
 
   return (
     <HotelsPageStyled>
-      <main>
-        <h1 className="page-title">Your visited hotels:</h1>
-        <HotelsList />
-      </main>
+      <h1 className="page-title">Your visited hotels:</h1>
+      <HotelsList />
     </HotelsPageStyled>
   );
 };

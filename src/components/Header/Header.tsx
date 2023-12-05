@@ -7,9 +7,9 @@ const Header = (): React.ReactElement => {
       <div className="header-container">
         <img
           className="header-container__logo"
-          src="/images/logo.webp"
+          src="/images/logo.svg"
           alt="hoteling logo"
-          width="400"
+          width="320"
           height="200"
         />
       </div>

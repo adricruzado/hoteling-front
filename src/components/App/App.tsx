@@ -4,6 +4,8 @@ import HotelsPage from "../../pages/HotelsPage/HotelsPage";
 import { useAppSelector } from "../../store/hooks";
 import Loading from "../Loading/Loading";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = (): React.ReactElement => {
   const uiState = useAppSelector((state) => state.uiState);
@@ -12,11 +14,14 @@ const App = (): React.ReactElement => {
     <>
       {uiState.isLoading && <Loading />}
       <Header />
-      <Routes>
-        <Route path="/" element={<Navigate to="/hotels" />} />
-        <Route path="/hotels" element={<HotelsPage />} />
-        <Route path="/*" element={<NotFoundPage />} />
-      </Routes>
+      <ToastContainer />
+      <main>
+        <Routes>
+          <Route path="/" element={<Navigate to="/hotels" />} />
+          <Route path="/hotels" element={<HotelsPage />} />
+          <Route path="/*" element={<NotFoundPage />} />
+        </Routes>
+      </main>
     </>
   );
 };

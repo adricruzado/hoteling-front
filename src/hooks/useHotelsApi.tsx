@@ -6,6 +6,7 @@ import {
   hideLoadingActionCreator,
   showLoadingActionCreator,
 } from "../store/features/ui/uiSlice";
+import { toast } from "react-toastify";
 
 const useHotelsApi = () => {
   axios.defaults.baseURL = import.meta.env.VITE_API_URL;
@@ -26,13 +27,25 @@ const useHotelsApi = () => {
 
   const deleteHotel = useCallback(
     async (hotelId: string) => {
-      dispatch(showLoadingActionCreator());
+      try {
+        dispatch(showLoadingActionCreator());
 
-      const { data } = await axios.delete(`/hotels/${hotelId}`);
+        const { data } = await axios.delete(`/hotels/${hotelId}`);
 
-      dispatch(hideLoadingActionCreator());
+        toast.success("Great! The hotel has been deleted.", {
+          theme: "colored",
+        });
 
-      return data;
+        dispatch(hideLoadingActionCreator());
+
+        return data;
+      } catch {
+        dispatch(hideLoadingActionCreator());
+
+        toast.error("Sorry! We couldn't delete the hotel.", {
+          theme: "colored",
+        });
+      }
     },
     [dispatch],
   );

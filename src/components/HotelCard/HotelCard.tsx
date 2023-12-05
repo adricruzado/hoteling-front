@@ -1,4 +1,7 @@
+import useHotelsApi from "../../hooks/useHotelsApi";
+import { deleteHotelActionCreator } from "../../store/features/hotels/hotelsSlice";
 import { HotelStructure } from "../../store/features/hotels/types";
+import { useAppDispatch } from "../../store/hooks";
 import Button from "../Button/Button";
 import HotelCardStyled from "./HotelCardStyled";
 
@@ -7,8 +10,16 @@ interface HotelCardProps {
 }
 
 const HotelCard = ({
-  hotel: { picture, name, country, city, rating, price, isFavourite },
+  hotel: { picture, name, country, city, rating, price, isFavourite, _id },
 }: HotelCardProps): React.ReactElement => {
+  const dispatch = useAppDispatch();
+  const { deleteHotel } = useHotelsApi();
+
+  const deleteHotelById = (hotelId: string) => {
+    deleteHotel(hotelId);
+    dispatch(deleteHotelActionCreator(hotelId));
+  };
+
   return (
     <HotelCardStyled className="hotel-card">
       <img
@@ -40,7 +51,12 @@ const HotelCard = ({
         <dd>{isFavourite ? "✅" : "❌"}</dd>
       </dl>
       <Button text="modify" />
-      <Button text="delete" />
+      <Button
+        text="delete"
+        actionOnClick={() => {
+          deleteHotelById(_id);
+        }}
+      />
     </HotelCardStyled>
   );
 };

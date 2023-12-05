@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { render } from "@testing-library/react";
 import GlobalStyle from "../styles/GlobalStyle";
 import { getMockStore } from "./providerWrapper";
+import { ToastContainer } from "react-toastify";
 
 export const customRender = (children: React.ReactElement) => {
   const mockStore = getMockStore();
@@ -12,6 +13,7 @@ export const customRender = (children: React.ReactElement) => {
   render(
     <BrowserRouter>
       <ThemeProvider theme={mainTheme}>
+        <ToastContainer />
         <Provider store={mockStore}>{children}</Provider>
         <GlobalStyle />
       </ThemeProvider>

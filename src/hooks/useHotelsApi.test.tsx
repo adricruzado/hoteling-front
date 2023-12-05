@@ -4,7 +4,7 @@ import useHotelsApi from "./useHotelsApi";
 import { providerWrapper } from "../testUtils/providerWrapper";
 
 describe("Given a useHotelsApi hook", () => {
-  describe("When it is called", () => {
+  describe("When it is called with its getHotels function", () => {
     test("Then it should return the information of 'Four Seasons Hotel George V' and 'The Ritz-Carlton'", async () => {
       const expectedHotels = apiHotelsMock;
 
@@ -20,7 +20,7 @@ describe("Given a useHotelsApi hook", () => {
     });
   });
 
-  describe("When it calls his deleteHotel method with an hotel id", () => {
+  describe("When it is called with its deleteHotel function with an hotel id", () => {
     test("Then it should delete the 'Four Seasons Hotel George V' hotel", async () => {
       const expectedHotelId = apiHotelsMock[0]._id;
       const expectedResponse = {};

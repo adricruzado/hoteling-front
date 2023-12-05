@@ -4,7 +4,7 @@ import HotelCard from "./HotelCard";
 import { apiHotelMock } from "../../mocks/apiHotelMock";
 import userEvent from "@testing-library/user-event";
 import { server } from "../../mocks/node";
-import errorHandlers from "../../mocks/errorHandlers";
+import { errorHandlers } from "../../mocks/errorHandlers";
 
 describe("Given an HotelCard component", () => {
   describe("When it receives a 'Four Seasons Hotel George V' hotel", () => {

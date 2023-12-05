@@ -4,7 +4,8 @@ import Button from "./Button";
 import userEvent from "@testing-library/user-event";
 
 describe("Given a Button component", () => {
-  const actionMock = vi.fn();
+  const modifyActionMock = vi.fn();
+  const deleteActionMock = vi.fn();
 
   describe("When it receives a text 'modify'", () => {
     test("Then it should show the text 'modify'", () => {
@@ -34,19 +35,35 @@ describe("Given a Button component", () => {
     });
   });
 
-  describe("When it receives an action and a click from a user", () => {
+  describe("When it receives the action modify and a click from a user", () => {
     test("Then it should call the received function", async () => {
       const expectedButtonText = "modify";
 
       customRender(
-        <Button text={expectedButtonText} actionOnClick={actionMock} />,
+        <Button text={expectedButtonText} actionOnClick={modifyActionMock} />,
       );
 
       const button = screen.getByRole("button", { name: expectedButtonText });
 
       await userEvent.click(button);
 
-      expect(actionMock).toHaveBeenCalledOnce();
+      expect(modifyActionMock).toHaveBeenCalledOnce();
+    });
+  });
+
+  describe("When it receives the action delete and a click from a user", () => {
+    test("Then it should call the received function", async () => {
+      const expectedButtonText = "delete";
+
+      customRender(
+        <Button text={expectedButtonText} actionOnClick={deleteActionMock} />,
+      );
+
+      const button = screen.getByRole("button", { name: expectedButtonText });
+
+      await userEvent.click(button);
+
+      expect(deleteActionMock).toHaveBeenCalledOnce();
     });
   });
 });

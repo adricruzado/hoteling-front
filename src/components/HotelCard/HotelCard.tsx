@@ -15,9 +15,9 @@ const HotelCard = ({
   const dispatch = useAppDispatch();
   const { deleteHotel } = useHotelsApi();
 
-  const deleteHotelById = (hotelId: string) => {
-    deleteHotel(hotelId);
-    dispatch(deleteHotelActionCreator(hotelId));
+  const deleteHotelById = () => {
+    deleteHotel(_id);
+    dispatch(deleteHotelActionCreator(_id));
   };
 
   return (
@@ -51,12 +51,7 @@ const HotelCard = ({
         <dd>{isFavourite ? "✅" : "❌"}</dd>
       </dl>
       <Button text="modify" />
-      <Button
-        text="delete"
-        actionOnClick={() => {
-          deleteHotelById(_id);
-        }}
-      />
+      <Button text="delete" actionOnClick={deleteHotelById} />
     </HotelCardStyled>
   );
 };

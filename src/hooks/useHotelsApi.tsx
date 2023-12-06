@@ -14,15 +14,21 @@ const useHotelsApi = () => {
   const dispatch = useAppDispatch();
 
   const getHotels = useCallback(async () => {
-    dispatch(showLoadingActionCreator());
+    try {
+      dispatch(showLoadingActionCreator());
 
-    const { data: hotels } = await axios.get<{ hotels: HotelStructure[] }>(
-      "/hotels",
-    );
+      const { data: hotels } = await axios.get<{ hotels: HotelStructure[] }>(
+        "/hotels",
+      );
 
-    dispatch(hideLoadingActionCreator());
+      dispatch(hideLoadingActionCreator());
 
-    return hotels;
+      return hotels;
+    } catch (error) {
+      dispatch(hideLoadingActionCreator());
+
+      throw new Error((error as Error).message);
+    }
   }, [dispatch]);
 
   const deleteHotel = useCallback(

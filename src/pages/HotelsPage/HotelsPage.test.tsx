@@ -1,6 +1,8 @@
-import { screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import HotelsPage from "./HotelsPage";
 import { customRender } from "../../testUtils/customRender";
+import { server } from "../../mocks/node";
+import { errorHandlers } from "../../mocks/errorHandlers";
 
 describe("Given a HotelsPage page", () => {
   describe("When it is rendered", () => {
@@ -36,6 +38,20 @@ describe("Given a HotelsPage page", () => {
       const hotelImage = screen.getByAltText(expectedAltText);
 
       expect(hotelImage).toBeInTheDocument();
+    });
+  });
+
+  describe("When it is rendered but it can't show the list of hotels", () => {
+    test("Then it should show the text 'Sorry! We couldn't find the hotels.' as a feedback message", async () => {
+      server.use(...errorHandlers);
+
+      const expectedFeedbackMessage = "Sorry! We couldn't find the hotels.";
+
+      customRender(<HotelsPage />);
+
+      await waitFor(() => {
+        expect(screen.getByText(expectedFeedbackMessage)).toBeInTheDocument();
+      });
     });
   });
 });

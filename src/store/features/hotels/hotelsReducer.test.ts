@@ -1,10 +1,12 @@
 import { apiHotelsMock } from "../../../mocks/apiHotelsMock";
+import { mockWithNewHotel } from "../../../mocks/mockWithNewHotel";
 import {
+  addHotelActionCreator,
   deleteHotelActionCreator,
   hotelsReducer,
   loadHotelsActionCreator,
 } from "./hotelsSlice";
-import { HotelStateStructure } from "./types";
+import { HotelStateStructure, HotelStructure } from "./types";
 
 describe("Given a hotelsReducer reducer", () => {
   describe("When it receives an empty list of hotels and the action loadHotels", () => {
@@ -37,6 +39,20 @@ describe("Given a hotelsReducer reducer", () => {
       currentHotelsState.hotels.forEach((hotel) =>
         expect(hotel).not.toHaveProperty("name", expectedDeletedHotel),
       );
+    });
+  });
+
+  describe("When it receives a hotels list, an 'Hesperia Hotel' and the action addHotel", () => {
+    test("Then it should return the list of hotels with the 'Hesperia Hotel'", () => {
+      const initialState: HotelStateStructure = { hotels: apiHotelsMock };
+      const newHotel: HotelStructure = mockWithNewHotel[2];
+
+      const currentHotelsState = hotelsReducer(
+        initialState,
+        addHotelActionCreator(newHotel),
+      );
+
+      expect(currentHotelsState.hotels).toStrictEqual(mockWithNewHotel);
     });
   });
 });

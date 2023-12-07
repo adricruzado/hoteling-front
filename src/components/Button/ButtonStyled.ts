@@ -9,7 +9,6 @@ const ButtonStyled = styled.button`
   font-size: 22px;
   font-weight: bold;
   margin-top: 22px;
-  margin-bottom: px;
 `;
 
 export default ButtonStyled;

@@ -3,15 +3,25 @@ import { customRender } from "../../testUtils/customRender";
 import HotelsList from "./HotelsList";
 
 describe("Given an HotelList component", () => {
-  describe("When it receives a list with 'Four Seasons Hotel George V' and 'The Ritz-Carlton'", () => {
-    test("Then it should show a list with the texts 'Four Seasons Hotel George V' and 'The Ritz-Carlton' in headings", () => {
-      const expectedNumberOfHotels = 2;
+  describe("When it is rendered", () => {
+    test("Then it should show an image with the alternative text 'Four Seasons Hotel George V'", () => {
+      const expectedAltText = "Four Seasons Hotel George V";
 
       customRender(<HotelsList />);
 
-      const hotelList = screen.getAllByRole("heading").length;
+      const hotelImage = screen.getByAltText(expectedAltText);
 
-      expect(hotelList).toBe(expectedNumberOfHotels);
+      expect(hotelImage).toBeInTheDocument();
+    });
+
+    test("Then it should show an image with the alternative text 'The Ritz-Carlton'", () => {
+      const expectedAltText = "The Ritz-Carlton";
+
+      customRender(<HotelsList />);
+
+      const hotelImage = screen.getByAltText(expectedAltText);
+
+      expect(hotelImage).toBeInTheDocument();
     });
   });
 });

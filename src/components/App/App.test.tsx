@@ -8,14 +8,12 @@ import {
 
 describe("Given an App component", () => {
   describe("When its rendered", () => {
-    test("Then it should show an hoteling logo in a header", () => {
-      const expectedImageText = "hoteling logo";
+    test("Then it should show an hoteling logo in a header with an alternative text 'hoteling logo'", () => {
+      const expectedAltText = "hoteling logo";
 
       customRender(<App />);
 
-      const logo = screen.getByRole("img", {
-        name: expectedImageText,
-      });
+      const logo = screen.getByAltText(expectedAltText);
 
       expect(logo).toBeInTheDocument();
     });

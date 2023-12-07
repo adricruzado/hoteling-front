@@ -3,6 +3,7 @@ import HotelsPage from "./HotelsPage";
 import { customRender } from "../../testUtils/customRender";
 import { server } from "../../mocks/node";
 import { errorHandlers } from "../../mocks/errorHandlers";
+import { apiHotelsMock } from "../../mocks/apiHotelsMock";
 
 describe("Given a HotelsPage page", () => {
   describe("When it is rendered", () => {
@@ -38,6 +39,18 @@ describe("Given a HotelsPage page", () => {
       const hotelImage = screen.getByAltText(expectedAltText);
 
       expect(hotelImage).toBeInTheDocument();
+    });
+
+    test("Then it should show a list of hotels", () => {
+      const expectedHotelList = apiHotelsMock;
+
+      customRender(<HotelsPage />);
+
+      expectedHotelList.forEach((hotel) => {
+        const hotelName = screen.getByRole("heading", { name: hotel.name });
+
+        expect(hotelName).toBeInTheDocument();
+      });
     });
   });
 

@@ -15,5 +15,25 @@ describe("Given a CreateHotelPage page", () => {
 
       expect(createHotelPageHeading).toBeInTheDocument();
     });
+
+    test("Then it should show a form with a 'Country:' label text", () => {
+      const expectedLabelText = "Country:";
+
+      customRender(<CreateHotelPage />);
+
+      const labelText = screen.getByLabelText(expectedLabelText);
+
+      expect(labelText).toBeInTheDocument();
+    });
+
+    test("Then it should show a button with the text 'add hotel'", () => {
+      const expectedButtonText = "add hotel";
+
+      customRender(<CreateHotelPage />);
+
+      const button = screen.getByRole("button", { name: expectedButtonText });
+
+      expect(button).toBeInTheDocument();
+    });
   });
 });

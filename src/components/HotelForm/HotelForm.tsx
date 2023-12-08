@@ -3,7 +3,11 @@ import { HotelWithoutId } from "../../store/features/hotels/types";
 import Button from "../Button/Button";
 import HotelFormStyled from "./HotelFormStyled";
 
-const HotelForm = (): React.ReactElement => {
+interface HotelFromProps {
+  onSubmit: (newHotel: HotelWithoutId) => void;
+}
+
+const HotelForm = ({ onSubmit }: HotelFromProps): React.ReactElement => {
   const emptyHotel: HotelWithoutId = {
     name: "",
     country: "",
@@ -29,16 +33,26 @@ const HotelForm = (): React.ReactElement => {
     });
   };
 
+  const onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    onSubmit(newHotel);
+  };
+
   return (
-    <HotelFormStyled className="form" autoComplete="off">
+    <HotelFormStyled
+      className="form"
+      autoComplete="off"
+      onSubmit={onFormSubmit}
+    >
       <div className="form__row">
-        <label className="form__label" htmlFor="hotel-name">
+        <label className="form__label" htmlFor="name">
           Hotel name:
         </label>
         <input
           className="form__input"
           type="text"
-          id="hotel-name"
+          id="name"
           required
           onChange={onChangeData}
         />
@@ -119,13 +133,13 @@ const HotelForm = (): React.ReactElement => {
         />
       </div>
       <div className="form__row--checkbox">
-        <label className="form__label--checkbox" htmlFor="checkbox">
+        <label className="form__label--checkbox" htmlFor="isFavourite">
           Favourite:
         </label>
         <input
           className="form__input--checkbox"
           type="checkbox"
-          id="checkbox"
+          id="isFavourite"
           required
           onChange={onChangeData}
         />

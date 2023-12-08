@@ -1,5 +1,6 @@
 import { http, HttpResponse } from "msw";
 import { apiHotelsMock } from "./apiHotelsMock";
+import { mockWithNewHotel } from "./mockWithNewHotel";
 
 const handlers = [
   http.get(`${import.meta.env.VITE_API_URL}/hotels`, () => {
@@ -11,6 +12,9 @@ const handlers = [
       return HttpResponse.json({});
     },
   ),
+  http.post(`${import.meta.env.VITE_API_URL}/hotels/create`, () => {
+    return HttpResponse.json({ hotel: mockWithNewHotel[2] });
+  }),
 ];
 
 export default handlers;

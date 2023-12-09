@@ -93,7 +93,30 @@ const useHotelsApi = () => {
     },
     [dispatch, navigate],
   );
-  return { getHotels, deleteHotel, addHotel };
+
+  const loadSelectedHotel = useCallback(
+    async (id: string): Promise<HotelStructure | void> => {
+      try {
+        dispatch(showLoadingActionCreator());
+
+        const {
+          data: { hotel },
+        } = await axios.get<{ hotel: HotelStructure }>(`/hotels/${id}`);
+
+        dispatch(hideLoadingActionCreator());
+
+        return hotel;
+      } catch {
+        dispatch(hideLoadingActionCreator());
+
+        toast.error("Sorry! We couldn't select the hotel.", {
+          theme: "colored",
+        });
+      }
+    },
+    [dispatch],
+  );
+  return { getHotels, deleteHotel, addHotel, loadSelectedHotel };
 };
 
 export default useHotelsApi;

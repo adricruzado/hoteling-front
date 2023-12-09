@@ -82,4 +82,46 @@ describe("Given a useHotelsApi hook", () => {
       expect(feedback).toBeInTheDocument();
     });
   });
+
+  describe("When its called with its loadSelectedHotel function with an 'Hesperia Hotel' hotel", () => {
+    test("Then it should return the 'Hesperia Hotel'", async () => {
+      const expectedHotelId = newHotel._id;
+
+      const {
+        result: {
+          current: { loadSelectedHotel },
+        },
+      } = renderHook(() => useHotelsApi(), { wrapper: providerWrapper });
+
+      const selectedHotel = await loadSelectedHotel(expectedHotelId);
+
+      expect(selectedHotel).toStrictEqual(newHotel);
+    });
+  });
+
+  describe("When it is called with its loadSelectedHotel function with an 'Hesperia Hotel' hotel and the response fails", () => {
+    test("Then it should show the text 'Sorry! We couldn't select the hotel.' as a feedback message", async () => {
+      server.use(...errorHandlers);
+
+      const expectedHotelId = newHotel._id;
+      const feedbackMessage = "Sorry! We couldn't select the hotel.";
+
+      customRenderWithoutBrowserRouter(
+        <MemoryRouter initialEntries={["/hotels/626492220f2c29b159453185"]}>
+          <App />
+        </MemoryRouter>,
+      );
+
+      const {
+        result: {
+          current: { loadSelectedHotel },
+        },
+      } = renderHook(() => useHotelsApi(), { wrapper: providerWrapper });
+
+      await loadSelectedHotel(expectedHotelId);
+      const feedback = await screen.findByText(feedbackMessage);
+
+      expect(feedback).toBeInTheDocument();
+    });
+  });
 });

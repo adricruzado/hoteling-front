@@ -45,7 +45,7 @@ describe("Given an HotelCard component", () => {
 
       customRender(<HotelCard hotel={apiHotelMock} />);
 
-      const button = screen.getByText(expectedButtonText);
+      const button = screen.getByRole("button", { name: expectedButtonText });
 
       expect(button).toBeInTheDocument();
     });
@@ -55,7 +55,7 @@ describe("Given an HotelCard component", () => {
 
       customRender(<HotelCard hotel={apiHotelMock} />);
 
-      const button = screen.getByText(expectedButtonText);
+      const button = screen.getByRole("button", { name: expectedButtonText });
 
       expect(button).toBeInTheDocument();
     });

@@ -86,6 +86,14 @@ describe("Given a useHotelsApi hook", () => {
   describe("When its called with its loadSelectedHotel function with an 'Hesperia Hotel' hotel", () => {
     test("Then it should return the 'Hesperia Hotel'", async () => {
       const expectedHotelId = newHotel._id;
+      const expectedHotelDescription =
+        "The Hesperia Hotel in Barcelona is an icon of luxury and sophistication. It offers luxurious rooms with stunning views, impeccable service, and an ideal location in the heart of Manhattan, close to the city's iconic landmarks.";
+
+      customRenderWithoutBrowserRouter(
+        <MemoryRouter initialEntries={["/hotels/626492220f2c29b159453185"]}>
+          <App />
+        </MemoryRouter>,
+      );
 
       const {
         result: {
@@ -93,9 +101,10 @@ describe("Given a useHotelsApi hook", () => {
         },
       } = renderHook(() => useHotelsApi(), { wrapper: providerWrapper });
 
-      const selectedHotel = await loadSelectedHotel(expectedHotelId);
+      await loadSelectedHotel(expectedHotelId);
+      const hotel = await screen.getByText(expectedHotelDescription);
 
-      expect(selectedHotel).toStrictEqual(newHotel);
+      expect(hotel).toBeInTheDocument();
     });
   });
 
@@ -107,7 +116,7 @@ describe("Given a useHotelsApi hook", () => {
       const feedbackMessage = "Sorry! We couldn't select the hotel.";
 
       customRenderWithoutBrowserRouter(
-        <MemoryRouter initialEntries={["/hotels/626492220f2c29b159453185"]}>
+        <MemoryRouter initialEntries={["/hotels/626492220f2c29b159453186"]}>
           <App />
         </MemoryRouter>,
       );

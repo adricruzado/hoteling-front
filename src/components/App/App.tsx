@@ -7,6 +7,7 @@ import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CreateHotelPage from "../../pages/CreateHotelPage/CreateHotelPage";
+import HotelDetailsPage from "../../pages/HotelDetailsPage/HotelDetailsPage";
 
 const App = (): React.ReactElement => {
   const uiState = useAppSelector((state) => state.uiState);
@@ -21,6 +22,7 @@ const App = (): React.ReactElement => {
           <Route path="/" element={<Navigate to="/hotels" />} />
           <Route path="/hotels" element={<HotelsPage />} />
           <Route path="/create" element={<CreateHotelPage />} />
+          <Route path="/hotels/:hotelId" element={<HotelDetailsPage />} />
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </main>

@@ -11,4 +11,8 @@ export const errorHandlers = [
   http.post(`${import.meta.env.VITE_API_URL}/hotels/create`, () =>
     HttpResponse.error(),
   ),
+  http.get(
+    `${import.meta.env.VITE_API_URL}/hotels/626492220f2c29b159453185`,
+    () => HttpResponse.error(),
+  ),
 ];

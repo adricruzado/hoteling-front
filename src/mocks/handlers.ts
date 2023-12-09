@@ -15,6 +15,12 @@ const handlers = [
   http.post(`${import.meta.env.VITE_API_URL}/hotels/create`, () => {
     return HttpResponse.json({ hotel: mockWithNewHotel[2] });
   }),
+  http.get(
+    `${import.meta.env.VITE_API_URL}/hotels/626492220f2c29b159453185`,
+    () => {
+      return HttpResponse.json({ hotel: mockWithNewHotel[2] });
+    },
+  ),
 ];
 
 export default handlers;

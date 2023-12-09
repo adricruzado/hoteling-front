@@ -12,6 +12,7 @@ export interface HotelStructure {
 
 export interface HotelStateStructure {
   hotels: HotelStructure[];
+  selectedHotel: HotelStructure;
 }
 
 export type HotelWithoutId = Omit<HotelStructure, "_id">;

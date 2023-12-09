@@ -6,12 +6,16 @@ import { Provider } from "react-redux";
 import { PropsWithChildren } from "react";
 import { store } from "../store";
 import { MemoryRouter } from "react-router-dom";
+import { HotelStructure } from "../store/features/hotels/types";
 
 export const getMockStore = () => {
   const mockStore = configureStore({
     reducer: { hotelsState: hotelsReducer, uiState: uiReducer },
     preloadedState: {
-      hotelsState: { hotels: apiHotelsMock },
+      hotelsState: {
+        hotels: apiHotelsMock,
+        selectedHotel: {} as HotelStructure,
+      },
       uiState: { isLoading: false },
     },
   });

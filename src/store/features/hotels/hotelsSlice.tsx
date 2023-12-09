@@ -3,6 +3,7 @@ import { HotelStateStructure, HotelStructure } from "./types";
 
 export const initialHotelsState: HotelStateStructure = {
   hotels: [],
+  selectedHotel: {} as HotelStructure,
 };
 
 const hotelsSlice = createSlice({
@@ -23,6 +24,13 @@ const hotelsSlice = createSlice({
       ...currentState,
       hotels: [...currentState.hotels, action.payload],
     }),
+    loadSelectedHotel: (
+      currentState,
+      action: PayloadAction<HotelStructure>,
+    ) => ({
+      ...currentState,
+      selectedHotel: action.payload,
+    }),
   },
 });
 
@@ -31,4 +39,5 @@ export const {
   loadHotels: loadHotelsActionCreator,
   deleteHotel: deleteHotelActionCreator,
   addHotel: addHotelActionCreator,
+  loadSelectedHotel: loadSelectedHotelActionCreator,
 } = hotelsSlice.actions;

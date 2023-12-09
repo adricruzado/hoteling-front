@@ -5,6 +5,7 @@ import {
   deleteHotelActionCreator,
   hotelsReducer,
   loadHotelsActionCreator,
+  loadSelectedHotelActionCreator,
 } from "./hotelsSlice";
 import { HotelStateStructure, HotelStructure } from "./types";
 
@@ -14,6 +15,7 @@ describe("Given a hotelsReducer reducer", () => {
       const hotelList = apiHotelsMock;
       const currentHotelListState: HotelStateStructure = {
         hotels: [],
+        selectedHotel: {} as HotelStructure,
       };
 
       const newListState = hotelsReducer(
@@ -27,7 +29,10 @@ describe("Given a hotelsReducer reducer", () => {
 
   describe("When it receives a list of hotels, a valid hotel id and the action deleteHotel", () => {
     test("Then it should return the list of hotels without the hotel 'Four Seasons Hotel George V'", () => {
-      const initialState: HotelStateStructure = { hotels: apiHotelsMock };
+      const initialState: HotelStateStructure = {
+        hotels: apiHotelsMock,
+        selectedHotel: {} as HotelStructure,
+      };
       const expectedDeletedHotel = "Four Seasons Hotel George V";
       const expectedHotelId = "656492010f2c29b15944b0d8";
 
@@ -44,7 +49,10 @@ describe("Given a hotelsReducer reducer", () => {
 
   describe("When it receives a hotels list, an 'Hesperia Hotel' and the action addHotel", () => {
     test("Then it should return the list of hotels with the 'Hesperia Hotel'", () => {
-      const initialState: HotelStateStructure = { hotels: apiHotelsMock };
+      const initialState: HotelStateStructure = {
+        hotels: apiHotelsMock,
+        selectedHotel: {} as HotelStructure,
+      };
       const newHotel: HotelStructure = mockWithNewHotel[2];
 
       const currentHotelsState = hotelsReducer(
@@ -53,6 +61,23 @@ describe("Given a hotelsReducer reducer", () => {
       );
 
       expect(currentHotelsState.hotels).toStrictEqual(mockWithNewHotel);
+    });
+  });
+
+  describe("When it receives a hotels list, an 'Hesperia Hotel' and the action loadSelectedHotel", () => {
+    test("Then it should return the list of hotels with the 'Hesperia Hotel' selected", () => {
+      const initialState: HotelStateStructure = {
+        hotels: mockWithNewHotel,
+        selectedHotel: {} as HotelStructure,
+      };
+      const selectedHotel: HotelStructure = mockWithNewHotel[2];
+
+      const currentHotelState = hotelsReducer(
+        initialState,
+        loadSelectedHotelActionCreator(selectedHotel),
+      );
+
+      expect(currentHotelState.selectedHotel).toStrictEqual(selectedHotel);
     });
   });
 });

@@ -1,10 +1,11 @@
-import { useMemo } from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import Button from "../../components/Button/Button";
 import { loadSelectedHotelActionCreator } from "../../store/features/hotels/hotelsSlice";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import HotelDetailsPageStyled from "./HotelDetailsPageStyled";
-import { useParams } from "react-router-dom";
 import useHotelsApi from "../../hooks/useHotelsApi";
+import { HotelStructure } from "../../store/features/hotels/types";
 
 const HotelDetailsPage = (): React.ReactElement => {
   const { hotelId } = useParams();
@@ -14,10 +15,14 @@ const HotelDetailsPage = (): React.ReactElement => {
     (state) => state.hotelsState.selectedHotel,
   );
 
-  useMemo(async () => {
-    const hotel = await loadSelectedHotel(hotelId!);
+  useEffect(() => {
+    (async () => {
+      scrollTo(0, 0);
 
-    dispatch(loadSelectedHotelActionCreator(hotel!));
+      const hotel = await loadSelectedHotel(hotelId as string);
+
+      dispatch(loadSelectedHotelActionCreator(hotel as HotelStructure));
+    })();
   }, [dispatch, hotelId, loadSelectedHotel]);
 
   return (

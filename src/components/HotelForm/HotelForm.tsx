@@ -37,6 +37,8 @@ const HotelForm = ({ onSubmit }: HotelFromProps): React.ReactElement => {
     event.preventDefault();
 
     onSubmit(newHotel);
+
+    scrollTo(0, 0);
   };
 
   return (
@@ -140,7 +142,6 @@ const HotelForm = ({ onSubmit }: HotelFromProps): React.ReactElement => {
           className="form__input--checkbox"
           type="checkbox"
           id="isFavourite"
-          required
           onChange={onChangeData}
         />
       </div>

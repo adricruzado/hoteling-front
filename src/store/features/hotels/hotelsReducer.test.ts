@@ -1,4 +1,5 @@
 import { apiHotelsMock } from "../../../mocks/apiHotelsMock";
+import { mockWithHotelModified } from "../../../mocks/mockWithHotelModified";
 import { mockWithNewHotel } from "../../../mocks/mockWithNewHotel";
 import {
   addHotelActionCreator,
@@ -6,6 +7,7 @@ import {
   hotelsReducer,
   loadHotelsActionCreator,
   loadSelectedHotelActionCreator,
+  modifyHotelActionCreator,
 } from "./hotelsSlice";
 import { HotelStateStructure, HotelStructure } from "./types";
 
@@ -78,6 +80,24 @@ describe("Given a hotelsReducer reducer", () => {
       );
 
       expect(currentHotelState.selectedHotel).toStrictEqual(selectedHotel);
+    });
+  });
+
+  describe("When it receives a hotels list, an 'Hesperia Hotel' and the action modifyHotel", () => {
+    test("Then it should return the list of hotels with the 'Hesperia Hotel' modified", () => {
+      const modifiedHotel = { ...mockWithNewHotel[2], isFavourite: false };
+
+      const initialState: HotelStateStructure = {
+        hotels: mockWithNewHotel,
+        selectedHotel: {} as HotelStructure,
+      };
+
+      const currentHotelState = hotelsReducer(
+        initialState,
+        modifyHotelActionCreator(modifiedHotel),
+      );
+
+      expect(currentHotelState.hotels).toStrictEqual(mockWithHotelModified);
     });
   });
 });

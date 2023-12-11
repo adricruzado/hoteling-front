@@ -31,6 +31,12 @@ const hotelsSlice = createSlice({
       ...currentState,
       selectedHotel: action.payload,
     }),
+    modifyHotel: (currentState, action: PayloadAction<HotelStructure>) => ({
+      ...currentState,
+      hotels: currentState.hotels.map((hotel) =>
+        hotel._id !== action.payload._id ? hotel : action.payload,
+      ),
+    }),
   },
 });
 
@@ -40,4 +46,5 @@ export const {
   deleteHotel: deleteHotelActionCreator,
   addHotel: addHotelActionCreator,
   loadSelectedHotel: loadSelectedHotelActionCreator,
+  modifyHotel: modifyHotelActionCreator,
 } = hotelsSlice.actions;

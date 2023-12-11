@@ -5,6 +5,7 @@ import userEvent from "@testing-library/user-event";
 
 describe("Given a HotelForm component", () => {
   const onSubmit = vi.fn();
+
   describe("When it is rendered", () => {
     test("Then it should show a form with a 'Hotel name:' label text", () => {
       const expectedLabelText = "Hotel name:";

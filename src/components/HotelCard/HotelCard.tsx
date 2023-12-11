@@ -19,6 +19,7 @@ const HotelCard = ({
   const deleteHotelById = () => {
     deleteHotel(_id);
     dispatch(deleteHotelActionCreator(_id));
+    scrollTo(0, 0);
   };
 
   return (

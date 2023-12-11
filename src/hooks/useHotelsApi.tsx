@@ -48,6 +48,8 @@ const useHotelsApi = () => {
 
         dispatch(hideLoadingActionCreator());
 
+        navigate("/");
+
         return data;
       } catch {
         dispatch(hideLoadingActionCreator());
@@ -57,7 +59,7 @@ const useHotelsApi = () => {
         });
       }
     },
-    [dispatch],
+    [dispatch, navigate],
   );
 
   const addHotel = useCallback(
@@ -116,7 +118,37 @@ const useHotelsApi = () => {
     },
     [dispatch],
   );
-  return { getHotels, deleteHotel, addHotel, loadSelectedHotel };
+
+  const modifyHotel = useCallback(
+    async (id: string): Promise<HotelStructure | void> => {
+      try {
+        dispatch(showLoadingActionCreator());
+
+        const {
+          data: { hotel },
+        } = await axios.patch<{ hotel: HotelStructure }>(`/hotels/${id}`);
+
+        dispatch(hideLoadingActionCreator());
+
+        toast.success("Great! The hotel has been modified.", {
+          theme: "colored",
+        });
+
+        navigate("/");
+
+        return hotel;
+      } catch {
+        dispatch(hideLoadingActionCreator());
+
+        toast.error("Sorry! We couldn't modify the hotel.", {
+          theme: "colored",
+        });
+      }
+    },
+    [dispatch, navigate],
+  );
+
+  return { getHotels, deleteHotel, addHotel, loadSelectedHotel, modifyHotel };
 };
 
 export default useHotelsApi;

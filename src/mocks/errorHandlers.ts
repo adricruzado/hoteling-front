@@ -15,4 +15,8 @@ export const errorHandlers = [
     `${import.meta.env.VITE_API_URL}/hotels/626492220f2c29b159453185`,
     () => HttpResponse.error(),
   ),
+  http.patch(
+    `${import.meta.env.VITE_API_URL}/hotels/626492220f2c29b159453185`,
+    () => HttpResponse.error(),
+  ),
 ];

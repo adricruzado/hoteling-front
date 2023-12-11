@@ -133,4 +133,57 @@ describe("Given a useHotelsApi hook", () => {
       expect(feedback).toBeInTheDocument();
     });
   });
+
+  describe("When it is called with its modifyHotel function with an 'Hesperia Hotel' hotel", () => {
+    test("Then it should show the text 'Great! The hotel has been modified.' as a feedback message", async () => {
+      const feedbackMessage = "Great! The hotel has been modified.";
+
+      customRenderWithoutBrowserRouter(
+        <MemoryRouter
+          initialEntries={["/hotels/626492220f2c29b159453185/modify"]}
+        >
+          <App />
+        </MemoryRouter>,
+      );
+
+      const {
+        result: {
+          current: { modifyHotel },
+        },
+      } = renderHook(() => useHotelsApi(), { wrapper: providerWrapper });
+
+      await modifyHotel(mockWithNewHotel[2]._id);
+      const feedback = await screen.findByText(feedbackMessage);
+
+      expect(feedback).toBeInTheDocument();
+    });
+  });
+
+  describe("When it is called with its modifyHotel function with an 'Hesperia Hotel' hotel and the response fails", () => {
+    test("Then it should show the text 'Sorry! We couldn't select the hotel.' as a feedback message", async () => {
+      server.use(...errorHandlers);
+
+      const expectedHotelId = mockWithNewHotel[2]._id;
+      const feedbackMessage = "Sorry! We couldn't modify the hotel.";
+
+      customRenderWithoutBrowserRouter(
+        <MemoryRouter
+          initialEntries={["/hotels/626492220f2c29b159453185/modify"]}
+        >
+          <App />
+        </MemoryRouter>,
+      );
+
+      const {
+        result: {
+          current: { modifyHotel },
+        },
+      } = renderHook(() => useHotelsApi(), { wrapper: providerWrapper });
+
+      await modifyHotel(expectedHotelId);
+      const feedback = await screen.findByText(feedbackMessage);
+
+      expect(feedback).toBeInTheDocument();
+    });
+  });
 });

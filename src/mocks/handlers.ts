@@ -1,6 +1,7 @@
 import { http, HttpResponse } from "msw";
 import { apiHotelsMock } from "./apiHotelsMock";
 import { mockWithNewHotel } from "./mockWithNewHotel";
+import { mockWithHotelModified } from "./mockWithHotelModified";
 
 const handlers = [
   http.get(`${import.meta.env.VITE_API_URL}/hotels`, () => {
@@ -19,6 +20,12 @@ const handlers = [
     `${import.meta.env.VITE_API_URL}/hotels/626492220f2c29b159453185`,
     () => {
       return HttpResponse.json({ hotel: mockWithNewHotel[2] });
+    },
+  ),
+  http.patch(
+    `${import.meta.env.VITE_API_URL}/hotels/626492220f2c29b159453185`,
+    () => {
+      return HttpResponse.json({ hotel: mockWithHotelModified });
     },
   ),
 ];

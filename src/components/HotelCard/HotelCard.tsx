@@ -1,7 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../store/hooks";
 import useHotelsApi from "../../hooks/useHotelsApi";
-import { deleteHotelActionCreator } from "../../store/features/hotels/hotelsSlice";
+import {
+  deleteHotelActionCreator,
+  loadSelectedHotelActionCreator,
+} from "../../store/features/hotels/hotelsSlice";
 import { HotelStructure } from "../../store/features/hotels/types";
 import Button from "../Button/Button";
 import HotelCardStyled from "./HotelCardStyled";
@@ -14,12 +17,23 @@ const HotelCard = ({
   hotel: { picture, name, country, city, rating, price, isFavourite, _id },
 }: HotelCardProps): React.ReactElement => {
   const dispatch = useAppDispatch();
-  const { deleteHotel } = useHotelsApi();
+  const { deleteHotel, loadSelectedHotel } = useHotelsApi();
+  const navigate = useNavigate();
 
   const deleteHotelById = () => {
     deleteHotel(_id);
+
     dispatch(deleteHotelActionCreator(_id));
+
     scrollTo(0, 0);
+  };
+
+  const modifyHotel = async () => {
+    const selectedHotel = await loadSelectedHotel(_id);
+
+    dispatch(loadSelectedHotelActionCreator(selectedHotel!));
+
+    navigate(`/hotels/modify`);
   };
 
   return (
@@ -54,7 +68,7 @@ const HotelCard = ({
           <dd>{isFavourite ? "✅" : "❌"}</dd>
         </dl>
       </Link>
-      <Button text="modify" />
+      <Button text="modify" actionOnClick={modifyHotel} />
       <Button text="delete" actionOnClick={deleteHotelById} />
     </HotelCardStyled>
   );

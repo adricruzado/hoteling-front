@@ -1,10 +1,11 @@
-import { screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "./App";
 import {
   customRender,
   customRenderWithoutBrowserRouter as customRenderWithoutBrowserRouter,
 } from "../../testUtils/customRender";
+import userEvent from "@testing-library/user-event";
 
 describe("Given an App component", () => {
   describe("When its rendered", () => {
@@ -80,6 +81,50 @@ describe("Given an App component", () => {
       const notFoundPage = screen.getByText(expectedText);
 
       expect(notFoundPage).toBeInTheDocument();
+    });
+  });
+
+  describe("When it is rendered on the modifyHotelPage and the user changes the country of the 'Hesperia Hotel' and clicks on the button to modify", () => {
+    test("Then it should modify the 'Hesperia Hotel' and go to HotelsPage", async () => {
+      const buttonText = "modify";
+
+      customRenderWithoutBrowserRouter(
+        <MemoryRouter initialEntries={["/hotels/modify"]}>
+          <App />
+        </MemoryRouter>,
+      );
+
+      const button = screen.getByRole("button", { name: buttonText });
+
+      await fireEvent.submit(button);
+
+      const title = await screen.findByRole("heading", {
+        name: "Your visited hotels:",
+      });
+
+      expect(title).toBeInTheDocument();
+    });
+  });
+
+  describe("When it is rendered on the hotelsPage and the user clicks on the 'Hesperia Hotel' modify button", () => {
+    test("Then it should go to the ModifyHotelPage", async () => {
+      const buttonText = "modify";
+
+      customRenderWithoutBrowserRouter(
+        <MemoryRouter initialEntries={["/hotels"]}>
+          <App />
+        </MemoryRouter>,
+      );
+
+      const button = screen.getAllByRole("button", { name: buttonText });
+
+      await userEvent.click(button[0]);
+
+      const title = await screen.findByRole("heading", {
+        name: "Modify your hotel:",
+      });
+
+      expect(title).toBeInTheDocument();
     });
   });
 });

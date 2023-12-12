@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { PropsWithChildren } from "react";
 import { store } from "../store";
 import { MemoryRouter } from "react-router-dom";
-import { HotelStructure } from "../store/features/hotels/types";
+import { mockWithHotelModified } from "../mocks/mockWithHotelModified";
 
 export const getMockStore = () => {
   const mockStore = configureStore({
@@ -14,7 +14,7 @@ export const getMockStore = () => {
     preloadedState: {
       hotelsState: {
         hotels: apiHotelsMock,
-        selectedHotel: {} as HotelStructure,
+        selectedHotel: mockWithHotelModified[2],
       },
       uiState: { isLoading: false },
     },

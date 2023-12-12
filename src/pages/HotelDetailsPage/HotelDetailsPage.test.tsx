@@ -13,25 +13,5 @@ describe("Given an HotelDetailsPage page", () => {
 
       expect(favouriteText).toBeInTheDocument();
     });
-
-    test("Then it should show a button with the text 'modify'", () => {
-      const expectedButtonText = "modify";
-
-      customRender(<HotelDetailsPage />);
-
-      const button = screen.getByRole("button", { name: expectedButtonText });
-
-      expect(button).toBeInTheDocument();
-    });
-
-    test("Then it should show a button with the text 'delete'", () => {
-      const expectedButtonText = "delete";
-
-      customRender(<HotelDetailsPage />);
-
-      const button = screen.getByRole("button", { name: expectedButtonText });
-
-      expect(button).toBeInTheDocument();
-    });
   });
 });

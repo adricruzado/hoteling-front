@@ -23,8 +23,8 @@ const App = (): React.ReactElement => {
           <Route path="/" element={<Navigate to="/hotels" />} />
           <Route path="/hotels" element={<HotelsPage />} />
           <Route path="/create" element={<CreateHotelPage />} />
-          <Route path="/hotels/:hotelId" element={<HotelDetailsPage />} />
-          <Route path="/hotels/modify" element={<ModifyHotelPage />} />
+          <Route path="/:hotelId" element={<HotelDetailsPage />} />
+          <Route path="/modify" element={<ModifyHotelPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import Button from "../../components/Button/Button";
 import { loadSelectedHotelActionCreator } from "../../store/features/hotels/hotelsSlice";
 import HotelDetailsPageStyled from "./HotelDetailsPageStyled";
 import useHotelsApi from "../../hooks/useHotelsApi";
@@ -60,8 +59,6 @@ const HotelDetailsPage = (): React.ReactElement => {
           <dt className="hotel-card__detail">Description:</dt>
           <dd>{selectedHotel.description}</dd>
         </dl>
-        <Button text="modify" />
-        <Button text="delete" />
       </div>
     </HotelDetailsPageStyled>
   );

@@ -1,14 +1,23 @@
 import { useState } from "react";
-import { HotelWithoutId } from "../../store/features/hotels/types";
+import {
+  HotelStructure,
+  HotelWithoutId,
+} from "../../store/features/hotels/types";
 import Button from "../Button/Button";
 import HotelFormStyled from "./HotelFormStyled";
 
-interface HotelFromProps {
-  onSubmit: (newHotel: HotelWithoutId) => void;
+interface HotelFormProps {
+  onSubmit: (hotel: HotelWithoutId) => void;
+  selectedHotel?: HotelStructure;
+  buttonText: string;
 }
 
-const HotelForm = ({ onSubmit }: HotelFromProps): React.ReactElement => {
-  const emptyHotel: HotelWithoutId = {
+const HotelForm = ({
+  onSubmit,
+  selectedHotel,
+  buttonText,
+}: HotelFormProps): React.ReactElement => {
+  let emptyHotel: HotelWithoutId = {
     name: "",
     country: "",
     city: "",
@@ -19,6 +28,9 @@ const HotelForm = ({ onSubmit }: HotelFromProps): React.ReactElement => {
     isFavourite: false,
   };
 
+  if (selectedHotel) {
+    emptyHotel = selectedHotel;
+  }
   const [newHotel, setNewHotel] = useState<HotelWithoutId>(emptyHotel);
 
   const onChangeData = (
@@ -55,8 +67,8 @@ const HotelForm = ({ onSubmit }: HotelFromProps): React.ReactElement => {
           className="form__input"
           type="text"
           id="name"
-          required
           onChange={onChangeData}
+          value={newHotel.name}
         />
       </div>
       <div className="form__row">
@@ -67,8 +79,8 @@ const HotelForm = ({ onSubmit }: HotelFromProps): React.ReactElement => {
           className="form__input"
           type="text"
           id="country"
-          required
           onChange={onChangeData}
+          value={newHotel.country}
         />
       </div>
       <div className="form__row">
@@ -79,8 +91,8 @@ const HotelForm = ({ onSubmit }: HotelFromProps): React.ReactElement => {
           className="form__input"
           type="text"
           id="city"
-          required
           onChange={onChangeData}
+          value={newHotel.city}
         />
       </div>
       <div className="form__row">
@@ -93,8 +105,8 @@ const HotelForm = ({ onSubmit }: HotelFromProps): React.ReactElement => {
           id="rating"
           min={0}
           max={10}
-          required
           onChange={onChangeData}
+          value={newHotel.rating}
         />
       </div>
       <div className="form__row">
@@ -105,8 +117,8 @@ const HotelForm = ({ onSubmit }: HotelFromProps): React.ReactElement => {
           className="form__input"
           type="number"
           id="price"
-          required
           onChange={onChangeData}
+          value={newHotel.price}
         />
       </div>
       <div className="form__row">
@@ -117,8 +129,8 @@ const HotelForm = ({ onSubmit }: HotelFromProps): React.ReactElement => {
           className="form__input"
           type="url"
           id="picture"
-          required
           onChange={onChangeData}
+          value={newHotel.picture}
         />
       </div>
       <div className="form__row">
@@ -130,8 +142,8 @@ const HotelForm = ({ onSubmit }: HotelFromProps): React.ReactElement => {
           id="description"
           rows={10}
           cols={30}
-          required
           onChange={onChangeData}
+          value={newHotel.description}
         />
       </div>
       <div className="form__row--checkbox">
@@ -145,7 +157,7 @@ const HotelForm = ({ onSubmit }: HotelFromProps): React.ReactElement => {
           onChange={onChangeData}
         />
       </div>
-      <Button text="add hotel" />
+      <Button text={buttonText} />
     </HotelFormStyled>
   );
 };

@@ -10,7 +10,7 @@ describe("Given a HotelForm component", () => {
     test("Then it should show a form with a 'Hotel name:' label text", () => {
       const expectedLabelText = "Hotel name:";
 
-      customRender(<HotelForm onSubmit={onSubmit} />);
+      customRender(<HotelForm onSubmit={onSubmit} buttonText="add hotel" />);
 
       const labelText = screen.getByLabelText(expectedLabelText);
 
@@ -20,7 +20,7 @@ describe("Given a HotelForm component", () => {
     test("Then it should show a button with the text 'add hotel'", () => {
       const expectedButtonText = "add hotel";
 
-      customRender(<HotelForm onSubmit={onSubmit} />);
+      customRender(<HotelForm onSubmit={onSubmit} buttonText="add hotel" />);
 
       const button = screen.getByRole("button", { name: expectedButtonText });
 
@@ -32,7 +32,7 @@ describe("Given a HotelForm component", () => {
     test("Then it should show the writen text in the first input", async () => {
       const expectedInputText = "Hesperia Hotel";
 
-      customRender(<HotelForm onSubmit={onSubmit} />);
+      customRender(<HotelForm onSubmit={onSubmit} buttonText="add hotel" />);
 
       const labelText = screen.getByLabelText("Hotel name:");
 
@@ -48,7 +48,7 @@ describe("Given a HotelForm component", () => {
     test("Then it should show the checkbox as checked", async () => {
       const favouriteInputText = "Favourite:";
 
-      customRender(<HotelForm onSubmit={onSubmit} />);
+      customRender(<HotelForm onSubmit={onSubmit} buttonText="add hotel" />);
 
       const checkboxInput = screen.getByRole("checkbox", {
         name: favouriteInputText,
@@ -62,7 +62,7 @@ describe("Given a HotelForm component", () => {
 
   describe("When it is rendered and the user clicks on the button to add a new hotel", () => {
     test("Then it should call its onSubmit function", async () => {
-      customRender(<HotelForm onSubmit={onSubmit} />);
+      customRender(<HotelForm onSubmit={onSubmit} buttonText="add hotel" />);
 
       const hotelForm = screen.getByLabelText("Hotel name:");
       const addHotelButton = screen.getByRole("button", { name: "add hotel" });
@@ -80,7 +80,7 @@ describe("Given a HotelForm component", () => {
       const expectedInputText = "Prueba";
       const expectedButtonText = "add hotel";
 
-      customRender(<HotelForm onSubmit={onSubmit} />);
+      customRender(<HotelForm onSubmit={onSubmit} buttonText="add hotel" />);
 
       const inputHotelElement = screen.getByLabelText("Hotel name:");
       await userEvent.type(inputHotelElement, expectedInputText);

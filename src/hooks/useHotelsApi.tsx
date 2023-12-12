@@ -80,9 +80,9 @@ const useHotelsApi = () => {
           theme: "colored",
         });
 
-        dispatch(hideLoadingActionCreator());
-
         navigate("/");
+
+        dispatch(hideLoadingActionCreator());
 
         return hotel;
       } catch {
@@ -120,13 +120,16 @@ const useHotelsApi = () => {
   );
 
   const modifyHotel = useCallback(
-    async (id: string): Promise<HotelStructure | void> => {
+    async (id: string, modifiedHotel: HotelWithoutId) => {
       try {
         dispatch(showLoadingActionCreator());
 
         const {
           data: { hotel },
-        } = await axios.patch<{ hotel: HotelStructure }>(`/hotels/${id}`);
+        } = await axios.patch<{ hotel: HotelStructure }>(
+          `/hotels/${id}`,
+          modifiedHotel,
+        );
 
         dispatch(hideLoadingActionCreator());
 

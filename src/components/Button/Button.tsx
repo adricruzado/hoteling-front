@@ -6,7 +6,11 @@ interface ButtonProps {
 }
 
 const Button = ({ text, actionOnClick }: ButtonProps): React.ReactElement => {
-  return <ButtonStyled onClick={actionOnClick}>{text}</ButtonStyled>;
+  return (
+    <ButtonStyled type="submit" onClick={actionOnClick}>
+      {text}
+    </ButtonStyled>
+  );
 };
 
 export default Button;

@@ -8,6 +8,7 @@ import { errorHandlers } from "../mocks/errorHandlers";
 import { customRenderWithoutBrowserRouter } from "../testUtils/customRender";
 import { MemoryRouter } from "react-router-dom";
 import App from "../components/App/App";
+import { mockWithHotelModified } from "../mocks/mockWithHotelModified";
 
 describe("Given a useHotelsApi hook", () => {
   const newHotel = mockWithNewHotel[2];
@@ -23,7 +24,7 @@ describe("Given a useHotelsApi hook", () => {
 
       const hotels = await getHotels();
 
-      expect(hotels).toStrictEqual(expectedHotels);
+      expect(hotels).toStrictEqual({ hotels: expectedHotels });
     });
   });
 
@@ -152,7 +153,7 @@ describe("Given a useHotelsApi hook", () => {
         },
       } = renderHook(() => useHotelsApi(), { wrapper: providerWrapper });
 
-      await modifyHotel(mockWithNewHotel[2]._id);
+      await modifyHotel(mockWithNewHotel[2]._id, mockWithHotelModified[2]);
       const feedback = await screen.findByText(feedbackMessage);
 
       expect(feedback).toBeInTheDocument();
@@ -180,7 +181,7 @@ describe("Given a useHotelsApi hook", () => {
         },
       } = renderHook(() => useHotelsApi(), { wrapper: providerWrapper });
 
-      await modifyHotel(expectedHotelId);
+      await modifyHotel(expectedHotelId, mockWithHotelModified[2]);
       const feedback = await screen.findByText(feedbackMessage);
 
       expect(feedback).toBeInTheDocument();

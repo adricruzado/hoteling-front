@@ -117,6 +117,7 @@ const HotelForm = ({
           className="form__input"
           type="number"
           id="price"
+          min={0}
           onChange={onChangeData}
           value={newHotel.price}
         />

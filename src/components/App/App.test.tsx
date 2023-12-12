@@ -73,7 +73,7 @@ describe("Given an App component", () => {
       const expectedText = "Not found...";
 
       customRenderWithoutBrowserRouter(
-        <MemoryRouter initialEntries={["/wrong"]}>
+        <MemoryRouter initialEntries={["/wrong/path"]}>
           <App />
         </MemoryRouter>,
       );
@@ -89,7 +89,7 @@ describe("Given an App component", () => {
       const buttonText = "modify";
 
       customRenderWithoutBrowserRouter(
-        <MemoryRouter initialEntries={["/hotels/modify"]}>
+        <MemoryRouter initialEntries={["/modify"]}>
           <App />
         </MemoryRouter>,
       );

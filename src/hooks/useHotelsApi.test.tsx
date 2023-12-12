@@ -91,7 +91,7 @@ describe("Given a useHotelsApi hook", () => {
         "The Hesperia Hotel in Barcelona is an icon of luxury and sophistication. It offers luxurious rooms with stunning views, impeccable service, and an ideal location in the heart of Manhattan, close to the city's iconic landmarks.";
 
       customRenderWithoutBrowserRouter(
-        <MemoryRouter initialEntries={["/hotels/626492220f2c29b159453185"]}>
+        <MemoryRouter initialEntries={["/626492220f2c29b159453185"]}>
           <App />
         </MemoryRouter>,
       );

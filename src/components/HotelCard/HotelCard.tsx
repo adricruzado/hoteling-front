@@ -33,12 +33,14 @@ const HotelCard = ({
 
     dispatch(loadSelectedHotelActionCreator(selectedHotel!));
 
-    navigate(`/hotels/modify`);
+    navigate(`/modify`);
+
+    scrollTo(0, 0);
   };
 
   return (
     <HotelCardStyled className="hotel-card">
-      <Link to={`/hotels/${_id}`}>
+      <Link to={`/${_id}`}>
         <img
           className="hotel-card__image"
           src={picture}

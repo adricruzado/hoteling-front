@@ -89,7 +89,7 @@ describe("Given an App component", () => {
       const buttonText = "modify";
 
       customRenderWithoutBrowserRouter(
-        <MemoryRouter initialEntries={["/modify"]}>
+        <MemoryRouter initialEntries={["/626492220f2c29b159453185/modify"]}>
           <App />
         </MemoryRouter>,
       );

@@ -24,7 +24,7 @@ const App = (): React.ReactElement => {
           <Route path="/hotels" element={<HotelsPage />} />
           <Route path="/create" element={<CreateHotelPage />} />
           <Route path="/:hotelId" element={<HotelDetailsPage />} />
-          <Route path="/modify" element={<ModifyHotelPage />} />
+          <Route path="/:hotelId/modify" element={<ModifyHotelPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

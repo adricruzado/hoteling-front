@@ -33,7 +33,7 @@ const HotelCard = ({
 
     dispatch(loadSelectedHotelActionCreator(selectedHotel!));
 
-    navigate(`/modify`);
+    navigate(`/${_id}/modify`);
 
     scrollTo(0, 0);
   };

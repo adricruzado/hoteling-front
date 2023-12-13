@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   HotelStructure,
   HotelWithoutId,
@@ -32,6 +32,12 @@ const HotelForm = ({
     emptyHotel = selectedHotel;
   }
   const [newHotel, setNewHotel] = useState<HotelWithoutId>(emptyHotel);
+
+  useEffect(() => {
+    if (selectedHotel) {
+      setNewHotel({ ...selectedHotel });
+    }
+  }, [selectedHotel]);
 
   const onChangeData = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,

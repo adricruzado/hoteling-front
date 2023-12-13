@@ -15,6 +15,7 @@ const App = (): React.ReactElement => {
 
   return (
     <>
+      {uiState.isLoading && <Loading />}
       <Header />
       <ToastContainer />
       <main>
@@ -26,7 +27,6 @@ const App = (): React.ReactElement => {
           <Route path="/modify" element={<ModifyHotelPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-        {uiState.isLoading && <Loading />}
       </main>
     </>
   );

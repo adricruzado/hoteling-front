@@ -17,7 +17,7 @@ Throughout the application development, **version control** was managed via **GI
 - Remove hotels from the collection.
 - Update the information of the hotels.
 
-## Technologies Used
+## Technologies Used
 
 - **TypeScript**: programming language that extends JavaScript by adding static types.
 

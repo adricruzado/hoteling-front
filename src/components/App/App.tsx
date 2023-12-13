@@ -1,11 +1,11 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import Header from "../Header/Header";
-import HotelsPage from "../../pages/HotelsPage/HotelsPage";
-import { useAppSelector } from "../../store/hooks";
-import Loading from "../Loading/Loading";
-import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useAppSelector } from "../../store/hooks";
+import Header from "../Header/Header";
+import HotelsPage from "../../pages/HotelsPage/HotelsPage";
+import Loading from "../Loading/Loading";
+import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import CreateHotelPage from "../../pages/CreateHotelPage/CreateHotelPage";
 import HotelDetailsPage from "../../pages/HotelDetailsPage/HotelDetailsPage";
 import ModifyHotelPage from "../../pages/ModifyHotelPage/ModifyHotelPage";
@@ -15,7 +15,6 @@ const App = (): React.ReactElement => {
 
   return (
     <>
-      {uiState.isLoading && <Loading />}
       <Header />
       <ToastContainer />
       <main>
@@ -27,6 +26,7 @@ const App = (): React.ReactElement => {
           <Route path="/modify" element={<ModifyHotelPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        {uiState.isLoading && <Loading />}
       </main>
     </>
   );
